@@ -175,3 +175,31 @@ button {
   text-decoration: none;
   cursor: pointer;
 } 
+
+.files ul {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.files ul > * {
+  margin-right: 30px;
+}
+
+.data-folder {
+  background-image: url(folder-open-solid.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+}
+
+.data-file {
+  background-image: url(file-solid.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+}
+
