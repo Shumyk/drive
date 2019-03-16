@@ -1,0 +1,100 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  height: 100%;
+}
+
+.form {
+  width: 20%;
+  height: 100px;
+}
+
+.place {
+  width: 80%;
+  height:100vh;
+  border: 1px solid grey;
+}
+
+button {
+  border: 0;
+}
+
+.apply-button {
+  background-color: green;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 30px;
+  width: 80%;
+  padding-top: 5px; 
+}
+
+.filter div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.filter-form {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.button-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.button-area button {
+  margin-top: 5px;
+  height: 30px;
+  width: 100%;  
+}
+
+.button-area button:last-child {
+  margin-bottom: 5px;
+}
+
+.create-button {
+  background-color: green;
+}
+
+.remane-button {
+  background-color: grey;
+}
+
+.delete-button {
+  background-color: red;
+}
