@@ -72,13 +72,21 @@ let ui = {
 
         let text = document.createTextNode(sName);
         div.appendChild(text);
+
         div.classList.add(bIsFolder ? 'data-folder' : 'data-file');
+
+        div.addEventListener('click', this.toggleSelected);
+
         return div;
     },
     createItemImage: function(bIsFolder) {
         let img = document.createElement('img');
         img.src = bIsFolder ? 'folder-open-solid.svg' : 'file-solid.svg';
         return img;
+    },
+
+    toggleSelected: function(evt) {
+        this.classList.toggle("selectedItem");
     },
 
     getInputValue: function(sId) {
