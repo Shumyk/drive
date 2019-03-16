@@ -38,7 +38,7 @@ function updateFilesList() {
             
             let div = document.createElement('div');
             let text = document.createTextNode(key);
-            div.classList.add('data-folder');
+            div.classList.add(typeof element === 'object' ? 'data-folder' : 'data-file');
             div.appendChild(text);
             filesList.appendChild(div); 
         }
