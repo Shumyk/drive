@@ -188,17 +188,21 @@ button {
 }
 
 .data-folder {
-  background-image: url(folder-open-solid.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.data-folder img {
   width: 50px;
   height: 50px;
 }
 
 .data-file {
-  background-image: url(file-solid.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.data-file img {
   width: 50px;
   height: 50px;
 }

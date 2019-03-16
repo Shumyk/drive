@@ -53,7 +53,7 @@ function updateFilesList() {
             div.classList.add(isFolder ? 'data-folder' : 'data-file');
 
             let img = document.createElement('img');
-            img.src = isFolder ? 'folder.png' : 'file.png';
+            img.src = isFolder ? 'folder-open-solid.svg' : 'file-solid.svg';
             div.appendChild(img);
             div.appendChild(text);
             filesList.appendChild(div); 
