@@ -21,6 +21,9 @@ let $ = function (element) {
 db.data.some = 'works';
 db.data.folder = {};
 db.data.wow = {};
+for(let i = 0; i < 100; i++) {
+    db.data[`wow${i}`] = {};
+}
 console.log('Hey');
 updateFilesList();
 
@@ -45,17 +48,17 @@ function updateFilesList() {
     let data = db.getData();
     for (const key in data) {
         if (data.hasOwnProperty(key)) {
-            const element = data[key];
-            
-            let isFolder = typeof element === 'object';
+            let isFolder = typeof data[key] === 'object';
             let div = document.createElement('div');
-            let text = document.createTextNode(key);
-            div.classList.add(isFolder ? 'data-folder' : 'data-file');
 
             let img = document.createElement('img');
             img.src = isFolder ? 'folder-open-solid.svg' : 'file-solid.svg';
             div.appendChild(img);
+
+            let text = document.createTextNode(key);
+            div.classList.add(isFolder ? 'data-folder' : 'data-file');
             div.appendChild(text);
+
             filesList.appendChild(div); 
         }
     }
