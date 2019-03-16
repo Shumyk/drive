@@ -34,8 +34,8 @@
 				<div class="dropdown">
 					<button class="main-create-button">Create</button>
 					<div class="dropdown-child">
-						<button class="create-button" onclick="promptInput('creationModal', 'folder')">Folder</button>
-						<button class="create-button" onclick="promptInput('creationModal', 'file')">File</button>
+						<button class="create-button" onclick="handler.openModal('creationModal', 'folder')">Folder</button>
+						<button class="create-button" onclick="handler.openModal('creationModal', 'file')">File</button>
 					</div>
 				</div>
 				<button class="remane-button">Rename</button>
@@ -55,11 +55,11 @@
 
 	<div id="creationModal" class="modal">
 		<div class="modal-content">
-			<span class="close" onclick="closeModal('creationModal')">Close</span>
+			<span class="close" onclick="handler.closeModal('creationModal')">Close</span>
 
 			<p id="descriptionPlaceholder">Enter name of folder:</p>
 			<input type="text" id="itemName">
-			<span class="button" onclick="createItem('creationModal')">Create</span>
+			<span class="button" onclick="handler.createItem('creationModal')">Create</span>
 		</div>
 	</div>
 </body>
