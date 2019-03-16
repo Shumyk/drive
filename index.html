@@ -15,10 +15,6 @@
 		</nav>
 		
 		<div class="filter">
-			<div>
-				<div>
-					<p>way</p>
-				</div>
 				<form class="filter-form">
 					<div>
 						<lable for="date">Choose date</lable>
@@ -30,22 +26,29 @@
 					</div>
 					<button class="apply-button">Apply</button>
 				</form>
-			</div>
 		</div>
 	</header>
 
 	<div class="container">
-
 		<section class="form">
 			<div class="button-area">
-				<button class="create-button" onclick="promptInput('creationModal')">Create</button>
+				<div class="dropdown">
+					<button class="main-create-button">Create</button>
+					<div class="dropdown-child">
+						<button class="create-button" onclick="promptInput('creationModal')">Folder</button>
+						<button class="create-button">File</button>
+					</div>
+				</div>
 				<button class="remane-button">Rename</button>
 				<button class="delete-button">Delete</button>
 			</div>
 		</section>
 
 		<section class="place">
-			<li id="files"></li>
+			<div class="breadcrumbs">
+			</div>
+			<div class="files">				
+			</div>
 		</section>
 
 	</div>
