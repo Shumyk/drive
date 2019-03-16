@@ -76,6 +76,7 @@ let ui = {
         div.classList.add(bIsFolder ? 'data-folder' : 'data-file');
 
         div.addEventListener('click', this.toggleSelected);
+        div.addEventListener('contextmenu', this.showContextMenu);
 
         return div;
     },
@@ -87,6 +88,21 @@ let ui = {
 
     toggleSelected: function(evt) {
         this.classList.toggle("selectedItem");
+    },
+    getContextMenu: function() {
+        return $('context-menu');
+    },
+    showContextMenu: function(evt) {
+        evt.preventDefault();
+
+        if (this.classList) {
+            ui.toggleSelected.call(this, evt);
+        }
+
+        let menu = ui.getContextMenu();
+        menu.style.left = evt.pageX + 'px';
+        menu.style.top = evt.pageY + 'px';
+        menu.style.display = 'block';
     },
 
     getInputValue: function(sId) {
@@ -114,6 +130,10 @@ let handler = {
         ui.closeModal(sModalId);
     },
 
+    deleteSelected: function(evt) {
+
+    },
+
     displayFiles: function() {
         // removes all the divs that we had before
         ui.emptyFilesList();
@@ -122,7 +142,15 @@ let handler = {
         let data = db.getData();
         ui.populateFilesList(data);
     },
+
+    showContextMenu: function(evt) {
+        ui.showContextMenu(evt);
+    }
 };
+
+document.onclick = function(e){
+    ui.getContextMenu().style.display = 'none';
+}
 
 db.data.some = 'works';
 db.data.folder = {};
