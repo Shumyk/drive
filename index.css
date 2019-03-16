@@ -4,6 +4,25 @@
   font-weight: bold;
 }
 
+body {
+  padding: 0;
+  margin: 0;
+}
+
+p , h3 {
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  border: 0;
+  border-radius: 5px;
+
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 nav ul {
   list-style-type: none;
   margin: 0;
@@ -28,41 +47,50 @@ nav li a:hover {
   background-color: #111;
 }
 
-
-.container {
+.create-button-filter {
+  padding: 5px;
   display: flex;
-  align-items: flex-start;
-  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
   height: 100%;
 }
 
-.form {
+.button-area {
+  display: flex;
+  flex-direction: column;
   width: 20%;
-  height: 100px;
 }
 
-.place {
-  width: 80%;
-  height:100vh;
-  border-top: 1px solid grey;
+.button-area button {
+  margin-top: 5px;
+  height: 40px;
+  width: 250px;
 }
 
-button {
-  border: 0;
-  border-radius: 5px;
-
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
+.main-create-button {
+  background-color: rgba(54, 180, 11, 0.7);
 }
 
-.apply-button {
-  background-color: green;
+.dropdown-child .create-button {
+  background-color: rgba(54, 180, 11, 0.7);
+  width: 120px;
+}
+
+.dropdown {
+  position: absolute;
+  display: inline-block;
+}
+
+.dropdown-child {
+  display: none;
+}
+
+.dropdown:hover .dropdown-child {
+  display: flex;
+  justify-content: space-between;
 }
 
 .filter {
-  display: flex;
-  justify-content: flex-end;
   height: 30px;
   padding-top: 5px;
   margin-bottom: 5px; 
@@ -78,49 +106,50 @@ button {
   margin-left: 10px;
 }
 
-.button-area {
+.container {
   display: flex;
-  flex-direction: column;
-}
-
-.button-area button {
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  height: 100%;
   margin-top: 5px;
-  height: 40px;
-  width: 100%;
+  padding: 5px;
 }
 
-.main-create-button {
-  background-color: rgba(24, 177, 24, 0.521);
+.info {
+  width: 20%;
 }
 
-.dropdown-child .create-button {
-  background-color: green;
-  width: 120px;
+.info-block {
+  position: fixed;
+  left: 5px;
+  bottom: 80px;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+.info-header {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgb(235, 223, 223);
 }
 
-.dropdown-child {
-    display: none;
+.info-block > * {
+  margin-top: 7px;
 }
 
-.dropdown:hover .dropdown-child {
+.info-block div h3 {
+  color: black;
+}
+
+.info-details {
   display: flex;
   justify-content: space-between;
 }
 
-.remane-button {
-  background-color: grey;
+.place {
+  width: 80%;
+  height:100vh;
+  border-top: 1px solid rgb(235, 223, 223);
+  border-left: 1px solid rgb(235, 223, 223);
 }
-
-.delete-button {
-  background-color: red;
-}
-
-
  /* The Modal (background) */
  .modal {
   display: none; /* Hidden by default */
@@ -187,25 +216,13 @@ button {
   margin-right: 30px;
 }
 
-.data-folder {
+.data-folder, .data-file {
   width: 50px;
   display: flex;
   flex-direction: column;
 }
 
-.data-folder img {
+.data-folder img, .data-file img {
   width: 50px;
   height: 50px;
 }
-
-.data-file {
-  width: 50px;
-  display: flex;
-  flex-direction: column;
-}
-
-.data-file img {
-  width: 50px;
-  height: 50px;
-}
-

@@ -13,23 +13,7 @@
 			</ul>
 		</nav>
 		
-		<div class="filter">
-				<form class="filter-form">
-					<div>
-						<lable for="date">Choose date</lable>
-						<input type="date" id="date" name="date">
-					</div>
-					<div>
-						<label for="only-folders">Show folders only</label>
-						<input type="checkbox" id="only-folders" name="only-folders">
-					</div>
-					<button class="apply-button">Apply</button>
-				</form>
-		</div>
-	</header>
-
-	<div class="container">
-		<section class="form">
+		<div class="create-button-filter">
 			<div class="button-area">
 				<div class="dropdown">
 					<button class="main-create-button">Create</button>
@@ -38,9 +22,40 @@
 						<button class="create-button" onclick="handler.openModal('creationModal', 'file')">File</button>
 					</div>
 				</div>
-				<button class="remane-button">Rename</button>
-				<button class="delete-button">Delete</button>
 			</div>
+	
+			<div class="filter">
+					<form class="filter-form">
+						<div>
+							<lable for="date">Choose date</lable>
+							<input type="date" id="date" name="date">
+						</div>
+						<div>
+							<label for="only-folders">Show folders only</label>
+							<input type="checkbox" id="only-folders" name="only-folders">
+						</div>
+					</form>
+			</div>
+		</div>
+		
+	</header>
+
+	<div class="container">
+		<section class="info">
+			<div class="info-block">
+				<div class="info-header">
+					<h3>Info</h3>
+				</div>
+				
+				<div class="info-details">
+					<p>Name:</p>
+					<p>folder</p>
+				</div>
+				<div class="info-details">
+					<p>Created:</p>
+					<p>27.09.2019 21:30</p>
+				</div>	
+			</div>	
 		</section>
 
 		<section class="place">
