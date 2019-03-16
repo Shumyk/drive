@@ -2,6 +2,7 @@
   color: #aaa;
   font-size: 20px;
   font-weight: bold;
+  font-family: Arial Black;
 }
 
 body {
@@ -17,10 +18,7 @@ p , h3 {
 button {
   border: 0;
   border-radius: 5px;
-
   color: white;
-  font-size: 20px;
-  font-weight: bold;
 }
 
 nav ul {
@@ -90,6 +88,43 @@ nav li a:hover {
   justify-content: space-between;
 }
 
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes slideInDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes slideInDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .filter {
   height: 30px;
   padding-top: 5px;
@@ -99,11 +134,17 @@ nav li a:hover {
 .filter-form {
   display: flex;
   flex-direction: row;
+  align-items: center;
   height: 100%;
 }
 
 .filter-form > * {
   margin-left: 10px;
+}
+
+.input-date {
+  border: 1px solid rgb(235, 223, 223);
+  border-radius: 5px;
 }
 
 .container {
@@ -147,6 +188,7 @@ nav li a:hover {
 .place {
   width: 80%;
   height:100vh;
+  border-radius: 5px;
   border-top: 1px solid rgb(235, 223, 223);
   border-left: 1px solid rgb(235, 223, 223);
 }
@@ -220,6 +262,10 @@ nav li a:hover {
   width: 50px;
   display: flex;
   flex-direction: column;
+}
+
+.data-folder.selectedItem, .data-file.selectedItem {
+  outline: 1px solid blue;
 }
 
 .data-folder img, .data-file img {
