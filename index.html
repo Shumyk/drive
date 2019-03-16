@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="drive.js"></script>
+	<link href="index.css" rel="stylesheet" type="text/css" >
+	<title>Drive</title>
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li class="brand"><a href="index.html">DRIVE</a></li>
+			</ul>
+		</nav>
+		
+		<div class="filter">
+			<div>
+				<div>
+					<p>way</p>
+				</div>
+				<form class="filter-form">
+					<div>
+						<lable for="date">Choose date</lable>
+						<input type="date" id="date" name="date">
+					</div>
+					<div>
+						<label for="only-folders">Show folders only</label>
+						<input type="checkbox" id="only-folders" name="only-folders">
+					</div>
+					<button class="apply-button">Apply</button>
+				</form>
+			</div>
+		</div>
+	</header>
+
+	<div class="container">
+
+		<section class="form">
+			<div class="button-area">
+				<button class="create-button" onclick="promptInput('creationModal')">Create</button>
+				<button class="remane-button">Rename</button>
+				<button class="delete-button">Delete</button>
+			</div>
+		</section>
+
+		<section class="place">
+			<li id="files"></li>
+		</section>
+
+	</div>
+
+	<div id="creationModal" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeModal('creationModal')">Close</span>
+
+			<p>Enter name of folder:</p>
+			<input type="text" id="itemName">
+			<span class="button" onclick="createItem('creationModal')">Create</span>
+		</div>
+	</div>
+</body>
+</html>
