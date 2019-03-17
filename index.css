@@ -269,6 +269,8 @@ nav li a:hover {
   cursor: pointer;
 } 
 
+
+/*file and folder*/
 .files ul {
   display: flex;
   align-items: flex-start;
@@ -281,17 +283,39 @@ nav li a:hover {
 }
 
 .data-folder, .data-file {
-  width: 50px;
+  width: 80px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+
+  position: relative;
+}
+
+.data-folder div, .data-file div {
+  position: absolute;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  margin-left: -30000px;
+  overflow: visible;
+}
+
+.data-folder:hover div, .data-file:hover div {
+  margin-left: 0;
+  z-index: 1000;
+  top:30px; 
+  left:20px;
 }
 
 .data-folder.selectedItem, .data-file.selectedItem {
-  outline: 1px solid blue;
+  background-color: rgba(54, 180, 11, 1);
+  color: white;
+  border-radius: 5px;
 }
 
 .data-folder img, .data-file img {
-  width: 50px;
+  width: 80px;
   height: 50px;
 }
 

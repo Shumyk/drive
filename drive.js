@@ -115,17 +115,18 @@ let ui = {
 	},
 	createItem: function (bIsFolder, sName) {
 		let div = document.createElement('div');
+        let hintDiv = document.createElement('div'); 
 
-		let innerDiv = document.createElement('div');
-		innerDiv.id = sName;
-		innerDiv.appendChild(ui.createItemImage(bIsFolder));
+		div.appendChild(ui.createItemImage(bIsFolder));
 
-		let text = document.createTextNode(sName);
-		innerDiv.appendChild(text);
-		div.appendChild(innerDiv);
-		
+        let titleText = document.createTextNode(sName);
+        let hintText = document.createTextNode(sName)
+
+        div.appendChild(titleText);
+        hintDiv.appendChild(hintText);
+        div.appendChild(hintDiv);
+        
 		div.id = sName;
-		div.dataText = sName;
 		div.classList.add(bIsFolder ? 'data-folder' : 'data-file');
 
 		div.addEventListener('click', this.toggleSelected);
@@ -263,7 +264,7 @@ db.data.some = 'works';
 db.data.folder = {};
 db.data.wow = {};
 for (let i = 0; i < 20; i++) {
-	db.data[`wow${i}`] = i % 2 === 0 ? {secondLevel: {
+	db.data[`wowdsfdfdfsdfsdfsdf${i}`] = i % 2 === 0 ? {secondLevel: {
 		thirdLevel: {},
 		thirdLevelDouble: {}
 	},
