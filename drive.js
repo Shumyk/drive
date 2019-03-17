@@ -24,10 +24,8 @@ let db = {
 	},
 
 	addElement: function (bIsFolder, sName) {
-		this.data[sName] = bIsFolder ? {} : '';
-	},
-	addElementInFolder: function () {
-
+		let folder = ui.getCurrentFolder(db.getData());
+		folder[sName] = bIsFolder ? {} : '';
 	},
 
 	addFolder: function (sName) {
@@ -38,12 +36,14 @@ let db = {
 	},
 
 	renameElement: (sOldName, sNewName) => {
-		db.data[sNewName] = db.data[sOldName];
-		delete db.data[sOldName];
+		let folder = ui.getCurrentFolder(db.getData());
+		folder[sNewName] = folder[sOldName];
+		delete folder[sOldName];
 	},
 
-	deleteElement: sName => {
-		delete db.data[sName];
+	deleteElement: function (sName) {
+		let folder = ui.getCurrentFolder(db.getData());
+		delete folder[sName];
 	},
 
 	data: {}
@@ -202,7 +202,7 @@ let handler = {
 	},
 
 	createItem: function (sModalId) {
-		db.addElement(ui.getIsFolder(), ui.location, ui.getInputValue('itemName'));
+		db.addElement(ui.getIsFolder(), ui.getInputValue('itemName'));
 
 		this.displayFiles();
 		ui.closeModal(sModalId);
