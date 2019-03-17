@@ -1,5 +1,18 @@
-let $ = function (element) {
-	return document.getElementById(element);
+let $ = {
+	id: (element) => {
+		return document.getElementById(element);
+	},
+
+	div: (sId, sText, fnOnClick) => {
+		let div = document.createElement('div');
+		div.appendChild(document.createTextNode(sText));
+		if (fnOnClick) {
+			div.addEventListener('click', fnOnClick);
+		}
+		div.id = sId;
+
+		return div;
+	}
 };
 let db = {
 	getData: function () {
@@ -54,17 +67,17 @@ let ui = {
 
 	openModal: function (sItemId, sType) {
 		if (sType) {
-			let description = $('descriptionPlaceholder');
+			let description = $.id('descriptionPlaceholder');
 			description.innerText = description.innerText.replace(/folder|file/gi, sType);
 		}
-		$(sItemId).style.display = 'block';
+		$.id(sItemId).style.display = 'block';
 	},
 	closeModal: function (sModalId) {
-		$(sModalId).style.display = 'none';
+		$.id(sModalId).style.display = 'none';
 	},
 
 	getFilesList: function () {
-		return $('files-list');
+		return $.id('files-list');
 	},
 	getCurrentFolder(files) {
 		let aLocation = ui.getLocation();
@@ -153,7 +166,7 @@ let ui = {
 		this.classList.toggle("selectedItem");
 	},
 	getContextMenu: function () {
-		return $('context-menu');
+		return $.id('context-menu');
 	},
 	showContextMenu: function (evt) {
 		evt.preventDefault();
@@ -166,7 +179,7 @@ let ui = {
 		menu.style.left = evt.pageX + 'px';
 		menu.style.top = evt.pageY + 'px';
 
-		$('renameOption').style.display = ui.getSelectedItems().length === 1 ? 'block' : 'none';
+		$.id('renameOption').style.display = ui.getSelectedItems().length === 1 ? 'block' : 'none';
 		menu.style.display = 'block';
 	},
 
@@ -183,14 +196,30 @@ let ui = {
 
 		handler.displayFiles();
 	},
+	updateBreadcrumbs: function () {
+		let totalPath = '/';
+		let breadcrumbs = $.id('breadcrumbs');
+
+		while (breadcrumbs.firstChild) {
+			breadcrumbs.removeChild(breadcrumbs.firstChild);
+		}
+
+		breadcrumbs.appendChild($.div(totalPath, ' / > ', handler.breadcrumbNavigate));
+
+		ui.getLocation().forEach(el => {
+			totalPath += el + '/';
+			let div_crumb = $.div(totalPath, el + ' > ', handler.breadcrumbNavigate);
+			breadcrumbs.appendChild(div_crumb);
+		});
+	},
 
 	getInputValue: function (sId) {
-		let inputValue = $(sId).value;
-		$(sId).value = '';
+		let inputValue = $.id(sId).value;
+		$.id(sId).value = '';
 		return inputValue;
 	},
 	getIsFolder: function () {
-		return $('descriptionPlaceholder').innerText.match(/folder|file/gi).shift() === 'folder';
+		return $.id('descriptionPlaceholder').innerText.match(/folder|file/gi).shift() === 'folder';
 	}
 };
 
@@ -226,10 +255,10 @@ let handler = {
 		let item = ui.getSelectedItems().shift();
 		let sItemType = item.classList.contains('data-folder') ? 'folder' : 'file';
 
-		let description = $('renameDescriptionPlaceholder');
+		let description = $.id('renameDescriptionPlaceholder');
 		description.innerText = description.innerText.replace(/folder|file/gi, sItemType);
 
-		$('renameItemName').value = item.id;
+		$.id('renameItemName').value = item.id;
 
 		handler.openModal('renameModal');
 	},
@@ -242,12 +271,18 @@ let handler = {
 		ui.closeModal(sModalId);
 	},
 
+	breadcrumbNavigate: function (evt) {
+		ui.location = evt.target.id;
+		handler.displayFiles();
+	},
+
 	displayFiles: function () {
 		// removes all the divs that we had before
 		ui.emptyFilesList();
 
 		// loading current data and create items
 		let data = db.getData();
+		ui.updateBreadcrumbs();
 		ui.populateFilesList(data);
 	},
 
