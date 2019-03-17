@@ -31,7 +31,12 @@ let db = {
     },
     addFile: function(sName) {
         this.data[sName] = '';
-    },
+		},
+		
+		deleteElement: sName => {
+			delete db.data[sName];
+		},
+
     data: {}
 };
 
@@ -71,9 +76,10 @@ let ui = {
         div.appendChild(this.createItemImage(bIsFolder));
 
         let text = document.createTextNode(sName);
-        div.appendChild(text);
+				div.appendChild(text);
 
-        div.classList.add(bIsFolder ? 'data-folder' : 'data-file');
+				div.id = sName;
+				div.classList.add(bIsFolder ? 'data-folder' : 'data-file');
 
         div.addEventListener('click', this.toggleSelected);
         div.addEventListener('contextmenu', this.showContextMenu);
@@ -131,7 +137,13 @@ let handler = {
     },
 
     deleteSelected: function(evt) {
+			ui.getFilesList().childNodes.forEach(el => {
+				if (el.classList.contains('selectedItem')) {
+					db.deleteElement(el.id);
+				}
+			});
 
+			this.displayFiles();
     },
 
     displayFiles: function() {
