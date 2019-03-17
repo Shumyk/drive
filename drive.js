@@ -46,6 +46,8 @@ let db = {
 };
 
 let ui = {
+	location: '/',
+
 	openModal: function (sItemId, sType) {
 		if (sType) {
 			let description = $('descriptionPlaceholder');
@@ -62,6 +64,15 @@ let ui = {
 	},
 	populateFilesList: function (files) {
 		let filesList = this.getFilesList();
+
+		let aLocation = ui.location.split('/').filter(el => el !== '');
+		for(let i = 0; i < aLocation.length; i++) {
+				files = files[aLocation[i]];
+		}
+
+		if (aLocation.length > 0) {
+			filesList.appendChild(this.createParentFolder());
+		}
 		for (const name in files) {
 			if (files.hasOwnProperty(name)) {
 				let bIsFolder = typeof files[name] === 'object';
@@ -76,9 +87,24 @@ let ui = {
 		}
 	},
 
+	createParentFolder: () => {
+		let div = document.createElement('div');
+		div.appendChild(ui.createItemImage(true));
+		
+		let text = document.createTextNode('..');
+		div.appendChild(text);
+
+		div.id = 'parentFolder';
+		div.classList.add('data-folder');
+
+		div.addEventListener('click', ui.toggleSelected);
+		div.addEventListener('dblclick', ui.openParentFolder);
+
+		return div;
+	},
 	createItem: function (bIsFolder, sName) {
 		let div = document.createElement('div');
-		div.appendChild(this.createItemImage(bIsFolder));
+		div.appendChild(ui.createItemImage(bIsFolder));
 
 		let text = document.createTextNode(sName);
 		div.appendChild(text);
@@ -87,6 +113,7 @@ let ui = {
 		div.classList.add(bIsFolder ? 'data-folder' : 'data-file');
 
 		div.addEventListener('click', this.toggleSelected);
+		div.addEventListener('dblclick', this.openItem);
 		div.addEventListener('contextmenu', this.showContextMenu);
 
 		return div;
@@ -124,6 +151,23 @@ let ui = {
 
 		$('renameOption').style.display = ui.getSelectedItems().length === 1 ? 'block' : 'none';
 		menu.style.display = 'block';
+	},
+
+	openItem: function (evt) {
+		console.log(evt);
+		let element = evt.target.parentNode;
+		if (element.classList.contains('data-folder')) {
+			ui.location += element.id + '/';
+		}
+		handler.displayFiles();
+	},
+	openParentFolder: function (evt) {
+		console.log(evt);
+
+		let lastIndex = ui.location.lastIndexOf('/', ui.location.length - 2);
+		ui.location = lastIndex === 0 ? '/' : ui.location.substring(0, lastIndex + 1);
+
+		handler.displayFiles();
 	},
 
 	getInputValue: function (sId) {
@@ -206,7 +250,11 @@ db.data.some = 'works';
 db.data.folder = {};
 db.data.wow = {};
 for (let i = 0; i < 20; i++) {
-	db.data[`wow${i}`] = i % 2 === 0 ? {} : '';
+	db.data[`wow${i}`] = i % 2 === 0 ? {secondLevel: {
+		thirdLevel: {},
+		thirdLevelDouble: {}
+	},
+	secondLevelEmpty: {}} : '';
 }
 console.log('Hey');
 handler.displayFiles();
