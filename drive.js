@@ -1,6 +1,6 @@
 let $ = {
-	id: (element) => {
-		return document.getElementById(element);
+	id: id => {
+		return document.getElementById(id);
 	},
 
 	div: (sId, sText, fnOnClick) => {
@@ -100,7 +100,9 @@ let ui = {
 		for (const name in files) {
 			if (files.hasOwnProperty(name)) {
 				let bIsFolder = typeof files[name] === 'object';
-				filesList.appendChild(this.createItem(bIsFolder, name));
+
+				if (!$.id('only-folders').checked || bIsFolder)
+					filesList.appendChild(this.createItem(bIsFolder, name));
 			}
 		}
 	},
