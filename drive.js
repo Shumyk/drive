@@ -92,6 +92,14 @@ let ui = {
         return img;
     },
 
+		getSelectedItems: () => {
+			let selectedItems = [];
+			ui.getFilesList().childNodes.forEach(el => {
+				if (el.classList.contains('selectedItem'))
+					selectedItems.push(el);
+			});
+			return selectedItems;
+		},
     toggleSelected: function(evt) {
         this.classList.toggle("selectedItem");
     },
@@ -107,7 +115,9 @@ let ui = {
 
         let menu = ui.getContextMenu();
         menu.style.left = evt.pageX + 'px';
-        menu.style.top = evt.pageY + 'px';
+				menu.style.top = evt.pageY + 'px';
+				
+				$('renameOption').style.display = ui.getSelectedItems().length === 1 ? 'block' : 'none';
         menu.style.display = 'block';
     },
 

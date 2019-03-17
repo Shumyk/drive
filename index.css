@@ -296,3 +296,6 @@ nav li a:hover {
   background:blue;
   color:#FFF;
 }
+#context-menu #renameOption {
+  display: none;
+}
