@@ -33,6 +33,11 @@ let db = {
         this.data[sName] = '';
 		},
 		
+		renameElement: (sOldName, sNewName) => {
+			db.data[sNewName] = db.data[sOldName];
+			delete db.data[sOldName];
+		},
+
 		deleteElement: sName => {
 			delete db.data[sName];
 		},
@@ -158,7 +163,26 @@ let handler = {
 			});
 
 			this.displayFiles();
-    },
+		},
+		openRenameModal: evt => {
+			let item = ui.getSelectedItems().shift();
+			let sItemType = item.classList.contains('data-folder') ? 'folder' : 'file';
+
+			let description = $('renameDescriptionPlaceholder');
+			description.innerText = description.innerText.replace(/folder|file/gi, sItemType);
+
+			$('renameItemName').value = item.id;
+
+			handler.openModal('renameModal');
+		},
+		renameItem: function(evt, sModalId) {
+			let sOldName = ui.getSelectedItems().shift().id;
+			let sNewName = ui.getInputValue('renameItemName');
+			db.renameElement(sOldName, sNewName);
+
+			this.displayFiles();
+			ui.closeModal(sModalId);
+		},
 
     displayFiles: function() {
         // removes all the divs that we had before

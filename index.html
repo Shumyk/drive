@@ -78,11 +78,21 @@
 		</div>
 	</div>
 
+	<div id="renameModal" class="modal">
+			<div class="modal-content">
+				<span class="close" onclick="handler.closeModal('renameModal')">Close</span>
+	
+				<p id="renameDescriptionPlaceholder">Enter new name of folder:</p>
+				<input type="text" id="renameItemName">
+				<span class="button" onclick="handler.renameItem(event, 'renameModal')">Rename</span>
+			</div>
+		</div>
+
 	<div id="context-menu" oncontextmenu="event.preventDefault();">
 			<ul>
 			  <li onclick="handler.selectAll(event)"> Select all</li>
 			  <li onclick="handler.deleteSelected(event)"> Delete selected</li>
-			  <li id='renameOption'> Rename selected</li>
+			  <li onclick="handler.openRenameModal(event)" id='renameOption'> Rename selected</li>
 			</ul>
 		</div>
 </body>
