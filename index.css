@@ -19,6 +19,7 @@ button {
   border: 0;
   border-radius: 5px;
   color: white;
+  cursor: pointer;
 }
 
 nav ul {
@@ -208,23 +209,35 @@ nav li a:hover {
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #759148;
+  background-color: rgba(41, 128, 12, 0.8);
   margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
+  padding: 10px;
+  border: 1px solid rgba(41, 128, 12, 1);
   width: 50%; /* Could be more or less, depending on screen size */
 }
 .modal-content>p {
-  color: #aaa;
+  color: rgb(245, 241, 241);
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.modal-content > input {
+  border: 1px solid rgba(41, 128, 12, 0.8);
+  border-radius: 5px;
+  background-color: rgb(113, 158, 98);
+  color: rgb(245, 241, 241);
 }
 
 /* Button */
 .button {
-  color: #aaa;
+  color: rgb(245, 241, 241);
   font-size: 18px;
   font-weight: bold;
+  background-color: rgba(41, 128, 12, 0.8);
+  border: 1px solid  rgba(41, 128, 12, 0.8);
+  border-radius: 5px;
+  padding: 5px;
 }
 .button:hover,
 .button:focus {
@@ -235,18 +248,28 @@ nav li a:hover {
 
 /* The Close Button */
 .close {
-  color: #aaa;
   float: right;
   font-size: 20px;
   font-weight: bold;
 }
+
+.close img {
+  width: 20px;
+  background-color: rgba(41, 128, 12, 0.8);
+  border: 1px solid  rgba(41, 128, 12, 0.8);
+  border-radius: 5px;
+}
+
+.close img:hover {
+  background-color: rgba(206, 17, 17, 0.8);
+}
+
 .close:hover,
 .close:focus {
-  color: black;
-  text-decoration: none;
   cursor: pointer;
-} 
+}
 
+/* */
 .files ul {
   display: flex;
   align-items: flex-start;
