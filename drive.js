@@ -104,11 +104,14 @@ let ui = {
 	},
 	createItem: function (bIsFolder, sName) {
 		let div = document.createElement('div');
-		div.appendChild(ui.createItemImage(bIsFolder));
+
+		let innerDiv = document.createElement('div');
+		innerDiv.appendChild(ui.createItemImage(bIsFolder));
 
 		let text = document.createTextNode(sName);
-		div.appendChild(text);
-
+		innerDiv.appendChild(text);
+		div.appendChild(innerDiv);
+		
 		div.id = sName;
 		div.classList.add(bIsFolder ? 'data-folder' : 'data-file');
 
@@ -154,16 +157,13 @@ let ui = {
 	},
 
 	openItem: function (evt) {
-		console.log(evt);
-		let element = evt.target.parentNode;
+		let element = evt.target.parentNode || evt.target.parentNode.parentNode;
 		if (element.classList.contains('data-folder')) {
 			ui.location += element.id + '/';
 		}
 		handler.displayFiles();
 	},
 	openParentFolder: function (evt) {
-		console.log(evt);
-
 		let lastIndex = ui.location.lastIndexOf('/', ui.location.length - 2);
 		ui.location = lastIndex === 0 ? '/' : ui.location.substring(0, lastIndex + 1);
 
