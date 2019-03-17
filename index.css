@@ -286,13 +286,13 @@ nav li a:hover {
 #context-menu { border:solid 1px #CCC;}
 #context-menu li { border-bottom:solid 1px #CCC; }
 #context-menu li:last-child { border:none; }
-#context-menu li a {
+#context-menu li {
   display:block;
   padding:5px 10px; 
   text-decoration:none;
   color:blue;
 }
-#context-menu li a:hover {
+#context-menu li:hover {
   background:blue;
   color:#FFF;
 }
