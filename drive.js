@@ -136,6 +136,10 @@ let handler = {
         ui.closeModal(sModalId);
     },
 
+		selectAll: evt =>
+			ui.getFilesList().childNodes.forEach(el =>
+				el.classList.add('selectedItem')
+			),
     deleteSelected: function(evt) {
 			ui.getFilesList().childNodes.forEach(el => {
 				if (el.classList.contains('selectedItem')) {
