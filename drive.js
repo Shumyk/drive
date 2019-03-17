@@ -106,7 +106,7 @@ let ui = {
 			return selectedItems;
 		},
     toggleSelected: function(evt) {
-        this.classList.toggle("selectedItem");
+				this.classList.toggle("selectedItem");
     },
     getContextMenu: function() {
         return $('context-menu');
@@ -114,8 +114,8 @@ let ui = {
     showContextMenu: function(evt) {
         evt.preventDefault();
 
-        if (this.classList) {
-            ui.toggleSelected.call(this, evt);
+        if (this.classList && !this.classList.contains("selectedItem")) {
+					this.classList.add("selectedItem");
         }
 
         let menu = ui.getContextMenu();
