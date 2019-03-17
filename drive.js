@@ -23,9 +23,13 @@ let db = {
 		this.data = { ...onlyFolders, ...onlyFiles };
 	},
 
-	addElement: function (sFileOrFolder, sName) {
-		this.data[sName] = sFileOrFolder === 'folder' ? {} : '';
+	addElement: function (bIsFolder, sName) {
+		this.data[sName] = bIsFolder ? {} : '';
 	},
+	addElementInFolder: function () {
+
+	},
+
 	addFolder: function (sName) {
 		this.data[sName] = {};
 	},
@@ -62,15 +66,22 @@ let ui = {
 	getFilesList: function () {
 		return $('files-list');
 	},
-	populateFilesList: function (files) {
-		let filesList = this.getFilesList();
-
-		let aLocation = ui.location.split('/').filter(el => el !== '');
+	getCurrentFolder(files) {
+		let aLocation = ui.getLocation();
 		for(let i = 0; i < aLocation.length; i++) {
 				files = files[aLocation[i]];
 		}
+		return files;
+	},
+	getLocation: function () {
+		return ui.location.split('/').filter(el => el !== '');
+	},
+	populateFilesList: function (files) {
+		let filesList = this.getFilesList();
 
-		if (aLocation.length > 0) {
+		files = ui.getCurrentFolder(files);
+
+		if (ui.getLocation().length > 0) {
 			filesList.appendChild(this.createParentFolder());
 		}
 		for (const name in files) {
@@ -114,6 +125,7 @@ let ui = {
 		div.appendChild(innerDiv);
 		
 		div.id = sName;
+		div.dataText = sName;
 		div.classList.add(bIsFolder ? 'data-folder' : 'data-file');
 
 		div.addEventListener('click', this.toggleSelected);
@@ -176,8 +188,8 @@ let ui = {
 		$(sId).value = '';
 		return inputValue;
 	},
-	getFolderOrFile: function () {
-		return $('descriptionPlaceholder').innerText.match(/folder|file/gi).shift();
+	getIsFolder: function () {
+		return $('descriptionPlaceholder').innerText.match(/folder|file/gi).shift() === 'folder';
 	}
 };
 
@@ -190,7 +202,7 @@ let handler = {
 	},
 
 	createItem: function (sModalId) {
-		db.addElement(ui.getFolderOrFile(), ui.getInputValue('itemName'));
+		db.addElement(ui.getIsFolder(), ui.location, ui.getInputValue('itemName'));
 
 		this.displayFiles();
 		ui.closeModal(sModalId);
