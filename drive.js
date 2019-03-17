@@ -106,6 +106,7 @@ let ui = {
 		let div = document.createElement('div');
 
 		let innerDiv = document.createElement('div');
+		innerDiv.id = sName;
 		innerDiv.appendChild(ui.createItemImage(bIsFolder));
 
 		let text = document.createTextNode(sName);
@@ -157,7 +158,7 @@ let ui = {
 	},
 
 	openItem: function (evt) {
-		let element = evt.target.parentNode || evt.target.parentNode.parentNode;
+		let element = evt.target.id ? evt.target.parentNode : evt.target.parentNode.parentNode;
 		if (element.classList.contains('data-folder')) {
 			ui.location += element.id + '/';
 		}
