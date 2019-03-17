@@ -192,6 +192,8 @@ nav li a:hover {
   border-radius: 5px;
   border-top: 1px solid rgb(235, 223, 223);
   border-left: 1px solid rgb(235, 223, 223);
+  padding-left: 10px;
+  padding-top: 10px;
 }
  /* The Modal (background) */
  .modal {
@@ -372,4 +374,14 @@ nav li a:hover {
 }
 #context-menu #renameOption {
   display: none;
+}
+
+/* breadcrumbs */
+
+#breadcrumbs div {
+  display: inline;
+}
+
+#breadcrumbs div:hover {
+  color: rgba(54, 180, 11, 1);
 }
