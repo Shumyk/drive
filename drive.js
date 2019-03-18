@@ -130,16 +130,19 @@ let ui = {
 	},
 	createItem: function (bIsFolder, sName) {
 		let div = document.createElement('div');
-        let hintDiv = document.createElement('div'); 
+		let hintDiv = document.createElement('div');
+		let p = document.createElement('p'); 
 
 		div.appendChild(ui.createItemImage(bIsFolder));
 
         let titleText = document.createTextNode(sName);
         let hintText = document.createTextNode(sName)
 
-        div.appendChild(titleText);
+		p.appendChild(titleText);
+		div.appendChild(p);
         hintDiv.appendChild(hintText);
-        div.appendChild(hintDiv);
+		div.appendChild(hintDiv);
+		
         
 		div.id = sName;
 		div.classList.add(bIsFolder ? 'data-folder' : 'data-file');
