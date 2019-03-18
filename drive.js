@@ -115,7 +115,7 @@ let ui = {
 
 	createParentFolder: () => {
 		let div = document.createElement('div');
-		div.appendChild(ui.createItemImage(true));
+		div.appendChild(ui.createItemImage(true, 'parentFolder'));
 		
 		let text = document.createTextNode('..');
 		div.appendChild(text);
@@ -150,9 +150,9 @@ let ui = {
 
 		return div;
 	},
-	createItemImage: function (bIsFolder) {
+	createItemImage: function (bIsFolder, id) {
 		let img = document.createElement('img');
-		img.src = bIsFolder ? 'folder-open-solid.svg' : 'file-solid.svg';
+		img.src = bIsFolder ? ((id === 'parentFolder') ? 'folder-open-solid.svg' : 'folder-solid.svg') : 'file-solid.svg';
 		return img;
 	},
 
